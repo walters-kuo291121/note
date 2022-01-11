@@ -1,0 +1,22 @@
+{
+    "window.zoomLevel": 2,
+    "editor.minimap.enabled": false,
+    "phpcs.executablePath": "/Users/walters/.composer/vendor/bin/phpcs",
+    "files.exclude": {
+        "**/.git": false
+    },
+    "window.title": "${activeEditorLong}${separator}${rootName}",
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook"
+    },
+    "breadcrumbs.enabled": true,
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "left"
+    },
+    "redhat.telemetry.enabled": false,
+    "security.workspace.trust.untrustedFiles": "open",
+    "python.defaultInterpreterPath": "python3",
+    "terminal.integrated.defaultProfile.osx": "zsh",
+    "terminal.integrated.fontFamily": "Hack Nerd Font"
+}
