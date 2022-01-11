@@ -1,0 +1,20 @@
+
+server {
+        listen 80;
+        server_name dev-api.topyl666.com;
+        location / {
+		include proxy_params;
+        	#proxy_pass http://localhost:1396;
+
+		proxy_pass http://127.0.0.1:5000;
+               # Redefine the header fields that NGINX sends to the upstream server
+               #proxy_set_header Host $host;
+               #proxy_set_header X-Real-IP $remote_addr;
+               #proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        }
+        location /static {
+                alias /var/www/app/;
+                autoindex on;
+        }
+}
+

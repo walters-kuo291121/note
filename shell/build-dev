@@ -1,0 +1,181 @@
+> sport168@1.0.0 build:dev /home/walters/resource/sport168-h5-test
+> cross-env process.env.BASE_URL=http://127.0.0.1:5000 nuxt build
+
+
+ WARN  You are using an unsupported version of Node.js (v10.19.0). It is recommended to use the latest LTS version (https://nodejs.org/en/about/releases)                                                                                                           14:19:44
+
+
+ WARN  mode option is deprecated. You can safely remove it from nuxt.config                                                                                                                                                                                         14:19:45
+
+ℹ Production build                                                                                                                                                                                                                                                  14:19:47
+ℹ Bundling for server and client side                                                                                                                                                                                                                               14:19:47
+ℹ Target: server                                                                                                                                                                                                                                                    14:19:47
+ℹ Using components loader to optimize imports                                                                                                                                                                                                                       14:19:48
+ℹ Discovered Components: .nuxt/components/readme.md                                                                                                                                                                                                                 14:19:48
+✔ Builder initialized                                                                                                                                                                                                                                               14:19:48
+✔ Nuxt files generated                                                                                                                                                                                                                                              14:19:48
+
+ WARN  Using an Array as build.postcss will be deprecated in Nuxt 3. Please switch to the object declaration                                                                                                                                                        14:19:48
+
+
+ WARN  Using an Array as build.postcss will be deprecated in Nuxt 3. Please switch to the object declaration                                                                                                                                                        14:19:48
+
+
+ WARN  Using an Array as build.postcss will be deprecated in Nuxt 3. Please switch to the object declaration                                                                                                                                                        14:19:48
+
+
+ WARN  Using an Array as build.postcss will be deprecated in Nuxt 3. Please switch to the object declaration                                                                                                                                                        14:19:48
+
+
+ WARN  Using an Array as build.postcss will be deprecated in Nuxt 3. Please switch to the object declaration                                                                                                                                                        14:19:48
+
+
+ WARN  Using an Array as build.postcss will be deprecated in Nuxt 3. Please switch to the object declaration                                                                                                                                                        14:19:48
+
+
+✔ Client
+  Compiled successfully in 42.86s
+
+✔ Server
+  Compiled successfully in 7.87s
+
+
+ WARN  Using an Array as build.postcss will be deprecated in Nuxt 3. Please switch to the object declaration (repeated 6 times)                                                                                                                                     14:19:48
+
+
+ WARN  Browserslist: caniuse-lite is outdated. Please run:                                                                                                                                                                                                          14:19:49
+npx browserslist@latest --update-db
+
+Why you should do it regularly:
+https://github.com/browserslist/browserslist#browsers-data-updating
+
+
+Hash: 6046c7b5a5c81e0934eb
+Version: webpack 4.46.0
+Time: 42863ms
+Built at: 01/10/2022 2:20:31 PM
+                                           Asset       Size                    Chunks                                Chunk Names
+                  ../server/client.manifest.json   59.1 KiB                            [emitted]                     
+                                      04ec29e.js   6.38 KiB                    33, 15  [emitted] [immutable]         pages/short/_shortCategory
+                                      1379226.js    102 KiB                         1  [emitted] [immutable]         app
+                                      1a80d88.js   5.07 KiB                     32, 7  [emitted] [immutable]         pages/short
+                                      27e7fd4.js   21.5 KiB  19, 3, 7, 10, 11, 15, 32  [emitted] [immutable]         pages/live-channel
+                                      29198f4.js   11.2 KiB                     27, 3  [emitted] [immutable]         pages/mine
+                                      2c1bb32.js    227 KiB                         2  [emitted] [immutable]         commons/app
+                                      45fed5e.js   13.5 KiB                        22  [emitted] [immutable]         pages/login
+                                      46d4563.js   34.8 KiB                         0  [emitted] [immutable]         components/policy
+                                      4722c0c.js   4.87 KiB                     28, 7  [emitted] [immutable]         pages/news
+                                      4c8b1c2.js  287 bytes                        16  [emitted] [immutable]         pages/fresh
+                                      4ef8a6e.js   7.21 KiB                    29, 13  [emitted] [immutable]         pages/news/_newsCategory
+                                      5237240.js  528 bytes                         8  [emitted] [immutable]         components/common-tab
+                                      5b349e0.js    137 KiB                  21, 3, 6  [emitted] [immutable]         pages/live/_type/_id
+                                      61fa6a5.js   2.73 KiB                        38  [emitted] [immutable]         runtime
+                                      64ef5bd.js   4.63 KiB                     18, 7  [emitted] [immutable]         pages/live
+                                      693795a.js   4.33 KiB                     24, 3  [emitted] [immutable]         pages/match/_matchCategory
+                                      6d8f014.js   27.3 KiB                 26, 7, 12  [emitted] [immutable]         pages/match/index
+                                      726aff2.js   11.7 KiB                        12  [emitted] [immutable]         components/match-table
+                                      788cb31.js   3.23 KiB                     36, 3  [emitted] [immutable]         pages/sub-events/_eventLink
+                                      792a04c.js   32.8 KiB           34, 3, 5, 6, 15  [emitted] [immutable]         pages/short/_type/_id
+                                      879bb63.js   13.6 KiB                      5, 6  [emitted] [immutable]         components/comment
+                                      89dc62d.js  436 bytes                        14  [emitted] [immutable]         components/phone-selection
+                                      939b29a.js   3.12 KiB                        23  [emitted] [immutable]         pages/match
+                                      93fb19a.js   2.84 KiB                         7  [emitted] [immutable]         components/common-header
+                                      99e247d.js   6.94 KiB                    35, 15  [emitted] [immutable]         pages/short/index
+                                        LICENSES   2.26 KiB                            [emitted]                     
+                                      a8471fd.js   6.77 KiB                    20, 11  [emitted] [immutable]         pages/live/_liveCategory
+                                      b1152ec.js   22.2 KiB                     37, 3  [emitted] [immutable]         pages/sub-mine/_setting
+                                      b4ee2f5.js   2.83 KiB                         9  [emitted] [immutable]         components/event-item
+                                      b9a4064.js   10.1 KiB                    31, 13  [emitted] [immutable]         pages/search
+                                      c177077.js   1.91 KiB                         3  [emitted] [immutable]         components/back-header
+                                      c831b0e.js   25.2 KiB                 25, 3, 12  [emitted] [immutable]         pages/match/_type/_matchSubCategory/index
+                                      d71ce3d.js   26.1 KiB          17, 7, 9, 11, 13  [emitted] [immutable]         pages/index
+                                      daaa946.js   2.88 KiB                         4  [emitted] [immutable]         components/chatroom
+                                      dad02bd.js   4.69 KiB                        13  [emitted] [immutable]         components/news-item
+                                      dce62f1.js   3.39 KiB                        10  [emitted] [immutable]         components/host-item
+                                      e41d7c2.js   4.37 KiB                         6  [emitted] [immutable]         components/comment-reply
+                                      eb840b1.js   1.22 MiB                        39  [emitted] [immutable]  [big]  vendors/app
+                                      ef79d43.js   27.5 KiB           30, 3, 5, 6, 13  [emitted] [immutable]         pages/news/_type/_id
+                                      f3bfd2f.js   4.45 KiB                        11  [emitted] [immutable]         components/live-item
+                                      fb14bfb.js   5.08 KiB                        15  [emitted] [immutable]         components/short-item
+                fonts/element-icons.313f7da.woff   27.5 KiB                            [emitted] [immutable]         
+                 fonts/element-icons.4520188.ttf   54.6 KiB                            [emitted] [immutable]         
+                             img/404.062b2f1.png   10.4 KiB                            [emitted] [immutable]         
+img/8782463765d8f7b6c77b07bed82c30aa.3f9c524.png   51.2 KiB                            [emitted] [immutable]         
+                          img/avatar.d45f47a.png   2.34 KiB                            [emitted] [immutable]         
+                        img/catlog04.1fda5cd.jpg   54.9 KiB                            [emitted] [immutable]         
+                        img/coundown.192292c.png   3.26 KiB                            [emitted] [immutable]         
+                          img/device.3964480.png    464 KiB                            [emitted] [immutable]  [big]  
+                      img/downloadbg.2d2b291.jpg   68.8 KiB                            [emitted] [immutable]         
+                           img/event.e889d56.jpg    248 KiB                            [emitted] [immutable]  [big]  
+img/f7cbf61bd9900dd76b80e222c65cf8be.7843df5.png   18.9 KiB                            [emitted] [immutable]         
+                            img/fire.5d72fed.svg   1.06 KiB                            [emitted] [immutable]         
+                             img/fix.ec23a0b.png   3.92 KiB                            [emitted] [immutable]         
+                         img/loading.8b9ea67.png   4.64 KiB                            [emitted] [immutable]         
+                      img/loginback.3ab4ff1.jpeg    119 KiB                            [emitted] [immutable]         
+                         img/short02.67b58e7.jpg   94.6 KiB                            [emitted] [immutable]         
+                          img/wechat.a28776e.png    212 KiB                            [emitted] [immutable]         
+ + 2 hidden assets
+Entrypoint app [big] = 61fa6a5.js 2c1bb32.js eb840b1.js 1379226.js
+
+WARNING in asset size limit: The following asset(s) exceed the recommended size limit (244 KiB).
+This can impact web performance.
+Assets: 
+  img/device.3964480.png (464 KiB)
+  img/event.e889d56.jpg (248 KiB)
+  eb840b1.js (1.22 MiB)
+
+WARNING in entrypoint size limit: The following entrypoint(s) combined asset size exceeds the recommended limit (1000 KiB). This can impact web performance.
+Entrypoints:
+  app (1.54 MiB)
+      61fa6a5.js
+      2c1bb32.js
+      eb840b1.js
+      1379226.js
+
+
+Hash: 2ff77de2bc97ed162288
+Version: webpack 4.46.0
+Time: 7871ms
+Built at: 01/10/2022 2:20:39 PM
+                                       Asset      Size                  Chunks             Chunk Names
+                   components/back-header.js  7.15 KiB                       1  [emitted]  components/back-header
+                      components/chatroom.js  8.33 KiB                       2  [emitted]  components/chatroom
+                 components/comment-reply.js  11.1 KiB                       4  [emitted]  components/comment-reply
+                       components/comment.js  26.8 KiB                    3, 4  [emitted]  components/comment
+                 components/common-header.js  8.34 KiB                       5  [emitted]  components/common-header
+                    components/common-tab.js  2.05 KiB                       6  [emitted]  components/common-tab
+                    components/event-item.js  8.06 KiB                       7  [emitted]  components/event-item
+                     components/host-item.js  8.79 KiB                       8  [emitted]  components/host-item
+                     components/live-item.js  10.5 KiB                       9  [emitted]  components/live-item
+                   components/match-table.js  17.9 KiB                      10  [emitted]  components/match-table
+                     components/news-item.js  10.3 KiB                      11  [emitted]  components/news-item
+               components/phone-selection.js     2 KiB                      12  [emitted]  components/phone-selection
+                        components/policy.js  41.2 KiB                      13  [emitted]  components/policy
+                    components/short-item.js  11.3 KiB                      14  [emitted]  components/short-item
+                              pages/fresh.js  1.69 KiB                      15  [emitted]  pages/fresh
+                              pages/index.js  57.2 KiB         16, 5, 7, 9, 11  [emitted]  pages/index
+                       pages/live-channel.js    60 KiB  18, 1, 5, 8, 9, 14, 31  [emitted]  pages/live-channel
+                               pages/live.js  15.3 KiB                   17, 5  [emitted]  pages/live
+                 pages/live/_liveCategory.js  19.7 KiB                   19, 9  [emitted]  pages/live/_liveCategory
+                     pages/live/_type/_id.js   188 KiB                20, 1, 4  [emitted]  pages/live/_type/_id
+                              pages/login.js  63.1 KiB                  21, 13  [emitted]  pages/login
+                              pages/match.js  9.46 KiB                      22  [emitted]  pages/match
+               pages/match/_matchCategory.js  16.3 KiB                   23, 1  [emitted]  pages/match/_matchCategory
+pages/match/_type/_matchSubCategory/index.js  45.3 KiB               24, 1, 10  [emitted]  pages/match/_type/_matchSubCategory/index
+                        pages/match/index.js  47.5 KiB               25, 5, 10  [emitted]  pages/match/index
+                               pages/mine.js  22.7 KiB                   26, 1  [emitted]  pages/mine
+                               pages/news.js  15.6 KiB                   27, 5  [emitted]  pages/news
+                 pages/news/_newsCategory.js  20.1 KiB                  28, 11  [emitted]  pages/news/_newsCategory
+                     pages/news/_type/_id.js  57.2 KiB         29, 1, 3, 4, 11  [emitted]  pages/news/_type/_id
+                             pages/search.js  21.2 KiB                  30, 11  [emitted]  pages/search
+                              pages/short.js  15.8 KiB                   31, 5  [emitted]  pages/short
+               pages/short/_shortCategory.js  19.3 KiB                  32, 14  [emitted]  pages/short/_shortCategory
+                    pages/short/_type/_id.js  63.9 KiB         33, 1, 3, 4, 14  [emitted]  pages/short/_type/_id
+                        pages/short/index.js  19.8 KiB                  34, 14  [emitted]  pages/short/index
+              pages/sub-events/_eventLink.js  13.6 KiB                   35, 1  [emitted]  pages/sub-events/_eventLink
+                  pages/sub-mine/_setting.js  37.6 KiB                   36, 1  [emitted]  pages/sub-mine/_setting
+                                   server.js   856 KiB                       0  [emitted]  app
+                        server.manifest.json  4.25 KiB                          [emitted]  
+ + 37 hidden assets
+Entrypoint app = server.js server.js.map
+ℹ Ready to run nuxt start                                                         
