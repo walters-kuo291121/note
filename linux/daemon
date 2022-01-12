@@ -1,0 +1,2 @@
+0<&- closes stdin
+&> file sends stdout and stderr to a file
