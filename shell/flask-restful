@@ -1,0 +1,79 @@
+from flask import Flask
+from flask_restful import Resource, Api
+app = Flask(__name__)
+api = Api(app)
+
+class HelloWorld(Resource):
+    def get(self):
+        return {"hello": "world"}
+api.add_resource(HelloWorld, "/")
+if __name__ == "__main__":
+    app.run(debug=True, host="127.0.0.1")
+
+
+gunicorn -b localhost:5000 -w 4 uwsgi:app
+gunicorn -b 127.0.0.1:5000 -w 4 app:app
+
+gunicorn -b 127.0.0.1:5000 main:app
+
+server {
+    listen      80;
+    server_name stage.topyl666.com;
+    location / {
+        proxy_pass          http://localhost:5000;
+        proxy_redirect      off;
+        proxy_set_header    Host $host;
+        proxy_set_header    X-Real-IP $remote_addr;
+        fastcgi_read_timeout 300s;
+        proxy_read_timeout 300;
+    }
+    location /static {
+        alias  /var/www/app/;
+    }
+    error_log  /var/log/nginx/api-error.log;
+    access_log /var/log/nginx/api-access.log;
+}
+
+#working
+server {
+	listen 80;
+	listen [::]:80;
+
+	server_name dev.topyl666.com;
+
+	location / {
+
+        include proxy_params;
+        proxy_pass http://localhost:5000;
+
+		# First attempt to serve request as file, then
+		# as directory, then fall back to displaying a 404.
+		try_files $uri $uri/ =404;
+	}
+}
+/var/www/app 
+gunicorn -b localhost:5000 -w 4 app:app &
+
+
+SQLALCHEMY_DATABASE_URI = postgresql://postgres:6NqLTvFAjJLJPKxo@database-dev.ci68ranogp85.ap-northeast-1.rds.amazonaws.com/topyl_dev
+postgresql://postgres:6NqLTvFAjJLJPKxo@database-dev.ci68ranogp85.ap-northeast-1.rds.amazonaws.com/topyl_dev
+
+
+h5
+.env.production
+BASE_URL = 'http//dev.topyl666.com'
+
+package.json
+"build": "cross-env process.env.BASE_URL=http//dev.topyl666.com nuxt generate",
+"start": "cross-env process.env.BASE_URL=http//dev.topyl666.com:80 nuxt start",
+
+
+
+
+/home/walters/.local/lib/python3.8/site-packages/flask_sqlalchemy/__init__.py:550: SAWarning: relationship 'ArticleModel.category' will copy column category.category_id to column article.category_id, which conflicts with relationship(s): 'ArticleModel.MainCategoryModel' (copies category.category_id to article.category_id), 'MainCategoryModel.article_list' (copies category.category_id to article.category_id). If this is not the intention, consider if these relationships should be linked with back_populates, or if viewonly=True should be applied to one or more if they are read-only. For the less common case that foreign key constraints are partially overlapping, the orm.foreign() annotation can be used to isolate the columns that should be written towards.   To silence this warning, add the parameter 'overlaps="MainCategoryModel,article_list"' to the 'ArticleModel.category' relationship. (Background on this error at: https://sqlalche.me/e/14/qzyx)
+  mapper = orm.class_mapper(type)
+/home/walters/.local/lib/python3.8/site-packages/flask_sqlalchemy/__init__.py:550: SAWarning: relationship 'ArticleModel.sub_category' will copy column category_sub.sub_category_id to column article.sub_category_id, which conflicts with relationship(s): 'ArticleModel.SubCategoryModel' (copies category_sub.sub_category_id to article.sub_category_id), 'SubCategoryModel.article_list' (copies category_sub.sub_category_id to article.sub_category_id). If this is not the intention, consider if these relationships should be linked with back_populates, or if viewonly=True should be applied to one or more if they are read-only. For the less common case that foreign key constraints are partially overlapping, the orm.foreign() annotation can be used to isolate the columns that should be written towards.   To silence this warning, add the parameter 'overlaps="SubCategoryModel,article_list"' to the 'ArticleModel.sub_category' relationship. (Background on this error at: https://sqlalche.me/e/14/qzyx)
+  mapper = orm.class_mapper(type)
+/home/walters/.local/lib/python3.8/site-packages/flask_sqlalchemy/__init__.py:550: SAWarning: relationship 'UserModel.userInfo' will copy column user.user_id to column comment.user_id, which conflicts with relationship(s): 'UserModel.comment_list' (copies user.user_id to comment.user_id). If this is not the intention, consider if these relationships should be linked with back_populates, or if viewonly=True should be applied to one or more if they are read-only. For the less common case that foreign key constraints are partially overlapping, the orm.foreign() annotation can be used to isolate the columns that should be written towards.   To silence this warning, add the parameter 'overlaps="comment_list"' to the 'UserModel.userInfo' relationship. (Background on this error at: https://sqlalche.me/e/14/qzyx)
+  mapper = orm.class_mapper(type)
+/home/walters/.local/lib/python3.8/site-packages/flask_sqlalchemy/__init__.py:550: SAWarning: relationship 'CommentModel.commenter' will copy column user.user_id to column comment.user_id, which conflicts with relationship(s): 'UserModel.comment_list' (copies user.user_id to comment.user_id). If this is not the intention, consider if these relationships should be linked with back_populates, or if viewonly=True should be applied to one or more if they are read-only. For the less common case that foreign key constraints are partially overlapping, the orm.foreign() annotation can be used to isolate the columns that should be written towards.   To silence this warning, add the parameter 'overlaps="comment_list"' to the 'CommentModel.commenter' relationship. (Background on this error at: https://sqlalche.me/e/14/qzyx)
