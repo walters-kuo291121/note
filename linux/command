@@ -1,1 +1,9 @@
 sudo chmod +x /usr/bin/mydaemon
+
+
+Create a Sudo User
+adduser username
+usermod -aG sudo username
+su - username
+sudo command_to_run
+sudo ls -la /root
