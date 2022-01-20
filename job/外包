@@ -1,0 +1,63 @@
+
+uat chatroom
+35.75.215.135
+ssh -p 2222 walters@10.130.3.71
+
+my aws chatroom
+3.92.66.235
+
+dev NLB  請使用以下 cname
+ aa8c3f0477bfb7a2d.awsglobalaccelerator.com
+
+VPN 
+download https://www.fortinet.com/tw/support/product-downloads 
+Name, description office(any words)
+211.22.63.231 port 10443 
+walters / q85kHBnN!v%D4E
+ssh -p 2222 walters@10.130.3.71
+
+dev 完成
+
+RDP
+IP 35.73.154.57
+dev-user / s5wQUfMnSSv3
+
+dig gunicorn.topyl666.com
+
+sudo snap set system proxy.http="http://10.130.1.159:3128"
+sudo snap set system proxy.https="http://10.130.1.159:3128"
+
+export HTTP_PROXY="http://10.130.1.159:3128"
+export HTTPS_PROXY="http://10.130.1.159:3128"
+
+IAM
+https://829024797252.signin.aws.amazon.com/console
+dev-user / OKo6$H6cNeMyay_xg8
+
+Ec2
+hostname DEV-Ubuntu01
+規格 t2.small SSD 60G
+IP 52.196.51.209
+root / Bvri0lSN#MP@eQ0L
+
+機器相關說明:已加白辦公室外部線路 可直接ssh訪問 目前對外訪問皆須透過proxy進行開放 目前為80 & 443對外全開
+
+S3相關資訊
+Access key ID AKIA4CBN2QJCHRBHDKHV
+Secret access key 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
+region = ap-northeast-1
+output = text
+bucket name = dev-env-bicket
+
+RDS
+規格 t3.small
+硬碟 SSD 60G
+版本 postgreSQL 13.4-R1
+資料庫識別名稱 database-dev
+Username postgres
+Password 6NqLTvFAjJLJPKxo
+Port 5432
+host database-dev.ci68ranogp85.ap-northeast-1.rds.amazonaws.com
+
+目前建置為內網環境 僅可從Ec2進行訪問 已經測試完畢
+ psql --host=database-dev.ci68ranogp85.ap-northeast-1.rds.amazonaws.com --port=5432 --username=postgres --password 

@@ -1,23 +1,45 @@
 
 server {
         listen 80;
+        set $env "dev";
         server_name dev-api.topyl666.com;
+        
+        client_max_body_size 10M;
+        access_log  /var/log/nginx/access_$host.log;
+        error_log   /var/log/nginx/error_$host.log;
+
         location / {
-                
-                # Redefine the header fields that NGINX sends to the upstream server
-                proxy_set_header Host $host;
-                proxy_set_header X-Real-IP $remote_addr;
-                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-                
                 proxy_pass http://127.0.0.1:5000;
-                #proxy_set_header Origin https://dev-chat.topyl666.com;
-                proxy_set_header Host $host;
-                proxy_hide_header Access-Control-Allow-Origin;
-                add_header Access-Control-Allow-Origin $http_origin;
-        }
-        location /static {
-                alias /var/www/app/;
-                autoindex on;
+                
+                proxy_set_header Upgrade           $http_upgrade;
+                proxy_set_header Connection        "upgrade";
+                proxy_set_header Host              $host;
+                proxy_set_header X-Real-IP         $remote_addr;
+                proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
+                proxy_set_header X-Forwarded-Proto $scheme;
+                proxy_set_header X-Forwarded-Host  $host;
+                proxy_set_header X-Forwarded-Port  $server_port;
+                proxy_set_header Access-Control-Allow-Origin $host; #Referrer Policy: strict-origin-when-cross-origin
+
+                #proxy_set_header Access-Control-Allow-Origin "https://uat-m.topyl666.com";
+		#proxy_set_header Access-Control-Allow-Origin "https://uat-admin.topyl666.com";
+		#proxy_set_header Access-Control-Allow-Origin "https://uat-www.topyl666.com";
+                #proxy_hide_header Access-Control-Allow-Origin;
+
+		add_header X-uri $http_origin;
+		add_header X-uri-host $host;
+
+                proxy_pass http://127.0.0.1:8082;
         }
 }
+gunicorn -b 0.0.0.0:8082 -w 4 --thread 50 app:app &
+gunicorn --thread 50 app:app
+--thread 50
+gunicorn --bind 0.0.0.0:8082 --workers 1 --threads 8 --timeout 0 app:app
+uwsgi --http :8082 --gevent 1000 --http-websockets --master --wsgi-file app.py --callable app
 
+pip install gevent-websocket eventlet
+pip install eventlet
+gunicorn --bind :5000 --workers 4 --threads 8 --timeout 0 app:app
+
+Successfully installed Flask-2.0.2 Flask-SocketIO-5.1.1 Jinja2-3.0.3 MarkupSafe-2.0.1 Werkzeug-2.0.2 bidict-0.21.4 click-8.0.3 gunicorn-20.1.0 itsdangerous-2.0.1 python-engineio-4.3.1 python-socketio-5.5.1

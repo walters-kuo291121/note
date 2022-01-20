@@ -1,16 +1,16 @@
-import socket, threading                                                #Libraries import
+import socket, threading
 
-host = '0.0.0.0'                                                      #LocalHost
-port = 8081                                                             #Choosing unreserved port
+host = '0.0.0.0'
+port = 8081
 
-server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)              #socket initialization
-server.bind((host, port))                                               #binding host and port to socket
+server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+server.bind((host, port))
 server.listen()
 
 clients = []
 nicknames = []
 
-def broadcast(message):                                                 #broadcast function declaration
+def broadcast(message):
     for client in clients:
         client.send(message)
 

@@ -15,7 +15,7 @@ def handle_message(data):
     emit('response', {'userName':username,'message':message},broadcast=True,room=room)
   
 @socketio.on('connect', namespace='/chat')  
-def test_connect(): 
+def test_connect():  
      print('Client connected') 
 #    emit('response', {'data': 'Connected'})  
 
@@ -44,3 +44,6 @@ def on_leave(data):
 
 if __name__ == '__main__':
     socketio.run(app, host='127.0.0.1', port=int(os.environ.get("PORT", 8080)),debug=True)
+
+
+#gunicorn --bind :8082 --workers 4 --threads 8 --timeout 0 app:app

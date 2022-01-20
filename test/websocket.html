@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <script>
+        var ws = new WebSocket(url, protocols);
+        ws.onopen = function (event) {
+            ws.send("Here's some text that the server is urgently awaiting!");
+        };
+        ws.onmessage = function(event) {
+        var f = document.getElementById("chatbox").contentDocument;
+        var text = "";
+        var msg = JSON.parse(event.data);
+        var time = new Date(msg.date);
+        var timeStr = time.toLocaleTimeString();
+
+        switch(msg.type) {
+            case "id":
+            clientID = msg.id;
+            setUsername();
+            break;
+            case "username":
+            text = "<b>User <em>" + msg.name + "</em> signed in at " + timeStr + "</b><br>";
+            break;
+            case "message":
+            text = "(" + timeStr + ") <b>" + msg.name + "</b>: " + msg.text + "<br>";
+            break;
+            case "rejectusername":
+            text = "<b>Your username has been set to <em>" + msg.name + "</em> because the name you chose is in use.</b><br>"
+            break;
+            case "userlist":
+            var ul = "";
+            for (i=0; i < msg.users.length; i++) {
+                ul += msg.users[i] + "<br>";
+            }
+            document.getElementById("userlistbox").innerHTML = ul;
+            break;
+        }
+
+        if (text.length) {
+            f.write(text);
+            document.getElementById("chatbox").contentWindow.scrollByPages(1);
+        }
+};
+        ws.close();
+    </script>
+<body>
+
+<h1>My First Heading</h1>
+
+<p>My first paragraph.</p>
+<div id='chatbox'></div>
+</body>
+</html>

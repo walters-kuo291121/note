@@ -1,5 +1,29 @@
+Development: The programmers are free to change and push changes any time in order to quickly test their code and integrate with other changes, without the fear of breaking anything - this is connected to the TEST databases and services;
+UAT: Should be treated with reverence by the developers, as it should contain a "as good as possible" copy of the production environment regarding hardware, with the difference being that this environment is connected to UAT databases with an editable copy of production data - it's used both by the Q&A team and the users to validate changes that'll go to production
+Production: The real deal.
+
+
+A UAT environment is set up for "user acceptance" of new functionality. In order to test that functionality, 
+QA or stakeholders may set up user profiles a particular way in order to exercise particular features, 
+or may set up mock products or configurations to check them all out.
+
+A staging environment is often set up with a copy of production data, sometimes anonymized. 
+Some corporations regularly "refresh" their staging database from a production snapshot. 
+The primary focus is to ensure that the application will work in production the same way it worked in UAT. Instead of setting up data anew, 
+testers will search the database for profiles and products that match an essential set of test cases. 
+Often the "real" data have quirks in them that give rise to unexpected edge cases that were missed during UAT. Also, 
+any data migration testing would need to take place in the staging environment.
+
+
+ps aux | grep 'node\|gunicorn'
+ps aux | egrep 'node|gunicorn'
+
+grep 'pattern1\|pattern2' filename
+egrep 'Tech|Sales' employee.txt
+
 sudo chmod +x /usr/bin/mydaemon
 
+unzip file.zip -d destination_folder
 
 Create a Sudo User
 adduser walters
@@ -7,3 +31,39 @@ usermod -aG sudo walters
 su - walters
 sudo command_to_run
 sudo ls -la /root
+
+
+alias ll='ls -alF'
+sudo add-apt-repository ppa:fkrull/deadsnakes
+
+
+
+//comand line hot key
+Use Ctrl+K to delete from the cursor to the end of the line.
+Use Ctrl+U to delete from the cursor to the beginning of the line.
+
+
+//network
+tcptrack -i eth0 src or dst 10.45.165.2
+tcptrack -i eth0 port 8080
+tcptrack -i eth0 port 80
+
+//monitor
+watch -n 10 script.sh # run script file every 10 seconds
+watch free -m
+watch ls -al /var/www
+
+
+ab -n 3 -c 3 -p post.txt -T application/x-www-form-urlencoded http://192.168.1.176:8080/xx
+
+curl -d "phone='+886988712216',password='123456'" -X POST https://dev-api.topyl666.com/user/passwordLogin
+curl -d '{"phone":"+886988712216", "password":"123456"}' -H "Content-Type: application/json" -X POST https://dev-api.topyl666.com/user/passwordLogin
+
+ab -n 1 -c 1  -T application/json -p 1.json  "https://dev-api.topyl666.com/user/passwordLogin"
+ab -n 1000 -c 50  -T application/json -p 1.json  "https://uat-api.topyl666.com/user/passwordLogin"
+
+
+/etc/supervisor/supervisord.conf
+
+/var/www/topyl_crawler export FLASK_ENV=development
+article1.py >> /var/log/topyl/crawler.log 2>&1

@@ -1,0 +1,7 @@
+command
+
+nginx -t
+
+
+
+config

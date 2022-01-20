@@ -1,0 +1,147 @@
+github
+Personal access tokens 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
+git clone https://github.com/walters-kuo291121/crawler.git
+Cloning into 'crawler'...
+Username for 'https://github.com': Walters Kuo
+Password for 'https://Walters Kuo@github.com': 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
+
+
+
+RDP
+vpn
+walters / q85kHBnN!v%D4E
+
+RDP03 IP 35.72.175.104 walters / q85kHBnN!v%D4E
+gitlab網址: http://git.leacloud.global
+備註 gitlab僅允許RDP的IP進行80以及22端口進行訪問
+
+Ubuntu Desktop
+IP 35.76.240.46
+帳號 root
+密碼 4wfIXvCb!emyCl
+
+請透過RDP機器: 登入UAT環境 ssh 10.130.3.71:2222, 登入後再進入資產, 使用 sudo -i 切換 root 腳色
+帳號: walters 
+密碼: 9tYGdv8sHyKW
+
+
+ssh -p 2222 walters@10.130.3.71
+
+gunicorn -b 0.0.0.0:5000 app:app &
+
+RDS
+規格 t3.small
+硬碟 SSD 100G
+版本 postgreSQL 13.4-R1
+資料庫識別名稱 database-dev
+使用者名稱 postgres
+密碼 QyNxBfKgCuQs$FDD
+資料庫連接端口 5432
+host database-uat.ci68ranogp85.ap-northeast-1.rds.amazonaws.com
+
+ALTER DATABASE postgres SET timezone TO 'Asia/Taipei';
+
+ALTER TABLE username RENAME TO member;
+ALTER TABLE member RENAME "userName" TO user_name;
+UPDATE user_sms SET is_valid = True WHERE sms_code='488913';
+
+
+ALTER TABLE "notification-user" RENAME TO notification_user;
+ALTER TABLE "stat-player" RENAME TO stat_player;
+ALTER TABLE "stat-player-basketball" RENAME TO stat_player_basketball;
+ALTER TABLE "stat-rank" RENAME TO stat_rank;
+          
+
+connection to server at "database-uat.ci68ranogp85.ap-northeast-1.rds.amazonaws.com" (10.130.22.18), port 5432 failed: FATAL:  password authentication failed for user "postgres"
+connection to server at "database-uat.ci68ranogp85.ap-northeast-1.rds.amazonaws.com" (10.130.22.18), port 5432 failed: FATAL:  password authentication failed for user "postgres"
+
+
+
+add_header Access-Control-Allow-Origin '*';
+add_header 'Access-Control-Allow-Credentials' 'true';
+add_header 'Access-Control-Allow-Headers' 'Authorization,Accept,Origin,DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Content-Range,Range';
+add_header 'Access-Control-Allow-Methods' 'GET,POST,OPTIONS,PUT,DELETE,PATCH';
+
+set $cors "";
+  if ($http_origin ~* (\.topyl666\.com|\.myseconddomain\.com)$) {
+      set $cors "true";
+  }
+
+  proxy_pass http://backend:10005/apathifyouwantso/;
+
+  if ($cors = "true") {
+    add_header 'Access-Control-Allow-Origin' "$http_origin";
+    add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS, DELETE, PUT';
+    add_header 'Access-Control-Allow-Credentials' 'true';
+    add_header 'Access-Control-Allow-Headers' 'User-Agent,Keep-Alive,Content-Type';
+  }
+proxy_set_header Origin http://uat-m.topyl666.com:5000;
+proxy_hide_header Access-Control-Allow-Origin;
+add_header Access-Control-Allow-Origin $http_origin;
+
+
+Access-Control-Allow-Origin:  http://127.0.0.1:3000
+Access-Control-Allow-Methods: POST
+Access-Control-Allow-Headers: Content-Type, Authorization
+
+proxy_redirect off;
+proxy_set_header host $host;
+proxy_set_header X-real-ip $remote_addr;
+proxy_set_header X-forward-for $proxy_add_x_forwarded_for;
+proxy_pass http://127.0.0.1:5000;
+
+
+if ($http_origin ~* (https?://.*\.topyl666\.com?(:[0-9]+)?$)) {
+    set $cors 'on';
+}
+
+if ($cors = 'on') {
+    add_header 'Access-Control-Allow-Origin' "$http_origin";
+    add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+    add_header 'Access-Control-Allow-Headers' 'Origin, X-Requested-With, Content-Type, Accept';
+}
+
+psql --host=database-uat.ci68ranogp85.ap-northeast-1.rds.amazonaws.com --port=5432 --username=postgres --password 
+
+truncate table user_sms restart identity;
+ALTER TABLE notification-user RENAME COLUMN touser TO toUser;
+ALTER TABLE "notification-user" RENAME touser TO toUser;
+
+
+uat 環境 我們有用 supervisord 作為啟動程序的方式
+
+
+truncate table "article" restart identity;
+truncate table "banner" restart identity;
+truncate table "category" restart identity;
+truncate table "category_sub" restart identity;
+truncate table "comment" restart identity;
+truncate table "event" restart identity;
+truncate table "like" restart identity;
+truncate table "match" restart identity;
+truncate table "match_source" restart identity;
+truncate table "member" restart identity;
+truncate table "notification" restart identity;
+truncate table "notification_user" restart identity;
+truncate table "stat_player" restart identity;
+truncate table "stat_player_basketball" restart identity;
+truncate table "stat_rank" restart identity;
+truncate table "user_login" restart identity;
+truncate table "user_sms" restart identity;
+
+
+DROP TABLE public."comment";
+DROP TABLE public."event";
+DROP TABLE public."like";
+DROP TABLE public."match";
+DROP TABLE public.match_source;
+DROP TABLE public."member";
+DROP TABLE public.notification;
+DROP TABLE public.notification_user;
+DROP TABLE public.stat_player;
+DROP TABLE public.stat_player_basketball;
+DROP TABLE public.stat_rank;
+DROP TABLE public.test;
+DROP TABLE public."user";
+DROP TABLE public.user_login;
+DROP TABLE public.user_sms;

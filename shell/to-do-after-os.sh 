@@ -2,43 +2,77 @@
 
 AWS envirment
 NLB + EC2 + RDS + S3
+ubuntu 20
 
 #things to do after installing os 
 subdomain + AWS ACM
-
-#check and install package update
-sudo apt-get update && sudo apt-get dist-upgrade
-
-sudo apt -y install vim bash-completion wget
-sudo apt-get install -y python3 python3-pip nginx python3-setuptools git
-sudo pip3 install uwsgi virtualenv Flask flask-restful gunicorn
-
-#conifg postgresql://postgres:6NqLTvFAjJLJPKxo@database-dev.ci68ranogp85.ap-northeast-1.rds.amazonaws.com/topyl_dev
 
 nginx config
 dev-api
 dev-m
 dev-www
+dev-admin
 
+gitlab 對應 目錄位置
+topyl-admin   /var/www/topyl_admin (後台 admin panel)
+topyl-h5      /var/www/topyl_h5 (mobile frontend)
+topyl-pc      /var/www/topyl_pc (www frontend)
+topyl-backend /var/www/topyl_api (api)
+topyl-chatroom /var/www/topyl_chatroom
 
-#admin: topyl-admin master
-clone 
-h5 : topyl-h5 master
-pc : topyl-pc master
+log
+/var/log/topyl/admin.log
+/var/log/topyl/h5.log
+/var/log/topyl/pc.log
+/var/log/topyl/api.log
+/var/log/topyl/chat.log
+
+執行api, h5, pc, admin 都run nginx 一樣的權限 www-data or root
+#非常重要的環境變數, 如果以 root 身份執行，請在 /etc/envirment 給參數
+#FLASK_ENV=development
+#SQLALCHEMY_DATABASE_URI="postgresql://postgres:QyNxBfKgCuQs$FDD@database-uat.ci68ranogp85.ap-northeast-1.rds.amazonaws.com/topyl_uat"
+
+#或是手動 command
+export FLASK_ENV=development | uat | prod
+
+#set up API service, check and install package update
+sudo apt-get update && sudo apt-get dist-upgrade
+
+sudo apt -y install vim bash-completion wget
+sudo apt-get install -y python3 python3-pip python3-setuptools nginx git
+sudo pip3 install uwsgi virtualenv Flask flask-restful gunicorn
+
 backend api: topyl-backend master
-
-clone backend api
 cd ./folder
-python3 -m pip install -r requirements.txt
+python3 -m pip install -r ./requirements.txt
 gunicorn -b 127.0.0.1:5000 -w 4 app:app &
 
 
+
+
+#做h5, pc 之前先安裝
 sudo apt update -y
-sudo curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+#sudo apt update -y --allow-unauthenticated
+sudo curl -sL https://deb.nodesource.com/setup_14.x  | sudo -E bash -
 sudo apt-get install -y nodejs npm
 sudo node -v && npm -v
 
-clone h5
+#ModuleNotFoundError: No module named 'apt_pkg' error
+#/usr/lib/python3/dist-packages# sudo cp apt_pkg.cpython-35m-x86_64-linux-gnu.so apt_pkg.so
+
+h5 : topyl-h5 master
+cd ./folder
+# install dependencies
+$ npm install
+
+# build for production and launch server
+#npm run build:dev
+npm run build:uat
+#npm run build:prod
+npm run start & 
+
+
+pc : topyl-pc master
 cd ./folder
 # install dependencies
 $ npm install
@@ -51,13 +85,35 @@ npm run start &
 
 
 
-clone pc
+
+admin : topyl-admin master 
 cd ./folder
 # install dependencies
 $ npm install
-
 # build for production and launch server
 #npm run build:dev
 npm run build:uat
 #npm run build:prod
-npm run start & 
+#build 完後會出現 dict folder, nginx config 指向 dict folder, default idnex.html
+
+
+
+
+
+#先不用設定等資料庫清空後再跑
+0 */2 * * *  python3 ./crawler/article1.py >> /var/log/topyl/crawler.log 2>&1
+20 */2 * * *  python3 ./crawler/article2.py >> /var/log/topyl/crawler.log 2>&1
+40 */2 * * *  python3 ./crawler/article3.py >> /var/log/topyl/crawler.log 2>&1
+0 */6 * * *  python3 ./crawler/match.py >> /var/log/topyl/crawler.log 2>&1
+*/5 * * * *  python3 ./crawler/matchToday.py >> /var/log/topyl/crawler.log 2>&1
+0 0 * * *  python3 ./crawler/basketball.py >> /var/log/topyl/crawler.log 2>&1
+30 0 * * *  python3 ./crawler/soccer.py >> /var/log/topyl/crawler.log 2>&1
+
+
+#chatroom 請參考 gitlab chatroom 
+sudo apt-get update && sudo apt-get dist-upgrade
+sudo apt-get install gunicorn python3-pip python3-setuptools
+python3 -m pip install -r ./requirements.txt
+
+#gunicorn -b 0.0.0.0:8080 -w 4 app:app & >> /var/log/topyl/chat.log 
+#gunicorn --bind :8080 -w 1 --worker-class eventlet app:app & >> /var/log/topyl/chat.log 

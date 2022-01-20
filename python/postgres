@@ -1,0 +1,46 @@
+command
+
+psql --host=database-dev.ci68ranogp85.ap-northeast-1.rds.amazonaws.com --port=5432 --username=postgres --password 
+psql --host=database-uat.ci68ranogp85.ap-northeast-1.rds.amazonaws.com --port=5432 --username=postgres --password 
+
+postgresql://bdyfqhhgdklldy:ed9829de1a13181f0be4c1ec1d59699a861e19af77d5731f9cc20ef86fef334c@ec2-54-147-76-191.compute-1.amazonaws.com/dhs4scpjlhik
+postgresql://postgres:6NqLTvFAjJLJPKxo@database-dev.ci68ranogp85.ap-northeast-1.rds.amazonaws.com/topyl_dev
+postgresql://postgres:QyNxBfKgCuQs$FDD@database-uat.ci68ranogp85.ap-northeast-1.rds.amazonaws.com/topyl_uat
+
+//only schema without data
+pg_dump --host localhost --port 5432 --username "userName" --schema-only --verbose --file "file path" "db_dev_local"
+pg_dump -s coin > workarea/coin/coin-schema.sql
+pg_dump --host=database-dev.ci68ranogp85.ap-northeast-1.rds.amazonaws.com --port=5432 --username=postgres -s topyl_dev < ./Heroku.sql
+
+#heroku
+pg_dump -U bdyfqhhgdklldy -h ec2-54-147-76-191.compute-1.amazonaws.com -s dhs4scpjlhik  > Heroku.sql
+pg_dump -U bdyfqhhgdklldy -h ec2-54-147-76-191.compute-1.amazonaws.com --port 5432  --schema-only  -s dhs4scpjlhik > Heroku.sql
+pg_dump -U bdyfqhhgdklldy -h ec2-54-147-76-191.compute-1.amazonaws.com -p 5432 --column-inserts --data-only --table=user dhs4scpjlhik > user.sql
+
+
+\l list databases
+\dt list tables
+\d user_sms description user table schema
+
+#PRIVILEGES One Table
+GRANT ALL PRIVILEGES ON TABLE side_adzone TO jerry;
+ 
+# All Tables of schema
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO jerry;
+
+
+
+Clear table and restart id
+truncate table user_sms restart identity;
+truncate table user_sms restart identity;
+
+
+ALTER TABLE notification-user RENAME COLUMN touser TO toUser;
+ALTER TABLE notification_user RENAME touser TO to_ser;
+
+#query
+UPDATE user_sms SET is_valid = True WHERE sms_code='488913';
+
+
+
+

@@ -1,0 +1,1 @@
+certbot renew --deploy-hook "service httpd graceful"
