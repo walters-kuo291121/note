@@ -1,7 +1,7 @@
 
 server {
         listen 80;
-        set $env "dev";
+        #set $env "dev";
         server_name dev-api.topyl666.com;
         
         client_max_body_size 10M;

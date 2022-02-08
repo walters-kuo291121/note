@@ -3,9 +3,17 @@
 AWS envirment
 NLB + EC2 + RDS + S3
 ubuntu 20
+NTP timezone Asia/Taipei
 
 #things to do after installing os 
 subdomain + AWS ACM
+
+port number
+api 5000
+m 1396
+www 1397
+admin 8080
+chatroom 8082 or 8080 也可以，因為不在同一台 server
 
 nginx config
 dev-api
@@ -33,13 +41,13 @@ log
 #SQLALCHEMY_DATABASE_URI="postgresql://postgres:QyNxBfKgCuQs$FDD@database-uat.ci68ranogp85.ap-northeast-1.rds.amazonaws.com/topyl_uat"
 
 #或是手動 command
-export FLASK_ENV=development | uat | prod
-
+export FLASK_ENV=development | uat | production
+export FLASK_ENV=production
 #set up API service, check and install package update
 sudo apt-get update && sudo apt-get dist-upgrade
-
 sudo apt -y install vim bash-completion wget
-sudo apt-get install -y python3 python3-pip python3-setuptools nginx git
+apt list | grep python3.9; sudo apt-get install python3.9
+sudo apt-get install -y python3-pip python3-setuptools nginx git
 sudo pip3 install uwsgi virtualenv Flask flask-restful gunicorn
 
 backend api: topyl-backend master
@@ -48,13 +56,10 @@ python3 -m pip install -r ./requirements.txt
 gunicorn -b 127.0.0.1:5000 -w 4 app:app &
 
 
-
-
 #做h5, pc 之前先安裝
-sudo apt update -y
 #sudo apt update -y --allow-unauthenticated
 sudo curl -sL https://deb.nodesource.com/setup_14.x  | sudo -E bash -
-sudo apt-get install -y nodejs npm
+sudo apt-get install -y nodejs
 sudo node -v && npm -v
 
 #ModuleNotFoundError: No module named 'apt_pkg' error
@@ -117,3 +122,11 @@ python3 -m pip install -r ./requirements.txt
 
 #gunicorn -b 0.0.0.0:8080 -w 4 app:app & >> /var/log/topyl/chat.log 
 #gunicorn --bind :8080 -w 1 --worker-class eventlet app:app & >> /var/log/topyl/chat.log 
+
+
+gunicorn -b 0.0.0.0:8082 -w 4 --thread 50 app:app &
+gunicorn --thread 50 app:app
+gunicorn --bind 0.0.0.0:8082 --workers 1 --threads 8 --timeout 0 app:app
+uwsgi --http :8082 --gevent 1000 --http-websockets --master --wsgi-file app.py --callable app
+
+gunicorn --bind :8080 --workers 4 --threads 8 --timeout 0 app:app

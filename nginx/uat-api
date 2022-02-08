@@ -1,12 +1,11 @@
 
 server {
         listen 80;
-        set $env "dev";
-        server_name dev-api.topyl666.com;
+        server_name uat-api.topyl666.com;
         
         client_max_body_size 10M;
-        access_log  /var/log/nginx/access_$host.log;
-        error_log   /var/log/nginx/error_$host.log;
+        access_log  /var/log/nginx/access-uat-api.log;
+        error_log   /var/log/nginx/error-uat-api.log;
 
         location / {
                 proxy_pass http://127.0.0.1:5000;
@@ -19,7 +18,7 @@ server {
                 proxy_set_header X-Forwarded-Proto $scheme;
                 proxy_set_header X-Forwarded-Host  $host;
                 proxy_set_header X-Forwarded-Port  $server_port;
-                #proxy_set_header Access-Control-Allow-Origin $host; #Referrer Policy: strict-origin-when-cross-origin
+                
 
                 proxy_set_header Access-Control-Allow-Origin "https://uat-m.topyl666.com";
 		proxy_set_header Access-Control-Allow-Origin "https://uat-admin.topyl666.com";
