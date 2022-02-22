@@ -1,0 +1,45 @@
+What is a Relational Database View?
+
+A database view is a searchable object in a database that is defined by a query.  Though a view doesn’t store data, some refer to a views as “virtual tables,” you can query a view like you can a table.  A view can combine data from two or more table, using joins, and also just contain a subset of information.  This makes them convenient to abstract, or hide, complicated queries.
+Table of contents
+
+    How to Create and Use a Database View
+    Benefits of a Database View
+    Disadvantages of Views
+
+Below is a visual depiction of a view:
+SQL Database View
+
+
+How to Create and Use a Database View
+A view is created from a query using the CREATE VIEW command.  In the example below we are creating a PopularBooks view based of a query which selects all Books that have the IsPopular field checked.  The Query is colored in Blue.
+
+CREATE VIEW PopularBooks AS
+SELECT ISBN, Title, Author, PublishDate
+FROM Books
+WHERE IsPopular = 1
+
+(Note:  This example won’t run in the sample database)
+
+Once a view is created you can use them as you would any table in a SELECT statement.  For example, to list all the popular book titles ordered by the author you could write:
+
+SELECT Author, Title
+FROM PopularBooks
+ORDER BY Author
+
+In general, you can use any of the SELECT clauses, such as GROUP BY, in a select statement containing a view.
+Benefits of a Database View
+
+There are many benefits to using views.  Listed below are some of the one that comes to mind:
+
+    Enforce Business Rules – Use views to define business rules, such as when an item is active, or what is meant by “popular.”  By placing complicated or misunderstood business logic into the view, you can be sure to present a unified portrayal of the data.  This increases use and quality.
+    Consistency – Simplify complicated query logic and calculations by hiding it behind the view’s definition.  Once defined they calculations are reference from the view rather than being restated in separate queries.  This makes for fewer mistakes and easier maintenance of code.
+    Security – Restrict access to a table, yet allow users to access non-confidential data via views.  For example, you can restrict access to the employee table, that contains social security numbers, but allow access to a view containing the name and phone number.
+    Simplicity – Databases with many tables possess complex relationships, which can be difficult to navigate if you aren’t comfortable using Joins.  Use views to provide a “flattened” view of the database for reporting or ad-hoc queries.
+    Space – Views take up very little space, as the data is stored once in the source table.  Some DBMS all you to create an index on a view, so in some cases views do take up more space than the definition.
+
+Disadvantages of Views
+
+    Performance – What may seem like a simple query against a view could turn out to be a hugely complex job for the database engine.  That is because each time a view is referenced, the query used to define it, is rerun.
+    Modifications – Not all views support INSERT, UPDATE, or DELETE operations.  In general, in order to support these operations, the primary key and required fields must be present in the view.  Complex multi-table views are generally read-only.
+

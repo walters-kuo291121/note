@@ -1,0 +1,19 @@
+aws s3 cp ./xx.jpg s3://img-uat.topyl666.com/test/ --acl public-read
+
+//replace
+aws s3 cp ./barname.1.bin s3://fooname/barname.bin
+
+https://s3-ap-northeast-1.amazonaws.com/dev-env-bicket/avatar.jpg
+https://s3.ap-northeast-1.amazonaws.com/img.topyl666.com/test/hello.jpg
+
+https://img-dev.topyl666.com.s3.Region.amazonaws.com/key-name
+https://img-dev.topyl666.com.s3.ap-northeast-1.amazonaws.com/hello.jpg
+https://img-dev.topyl666.com/hello.jpg'''
+
+s3://img-uat.topyl666.com 
+cname: img-uat.topyl666.com.s3-website-ap-northeast-1.amazonaws.com
+
+https://img-uat.topyl666.com.s3-website-ap-northeast-1.amazonaws.com/test/hello.jpg
+
+s3://img.topyl66.com
+cname: img.topyl66.com.s3-website-ap-northeast-1.amazonaws.com
